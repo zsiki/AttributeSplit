@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/AttributeSplit" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>

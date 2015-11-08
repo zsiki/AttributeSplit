@@ -33,18 +33,47 @@ FORM_CLASS, _ = uic.loadUiType(os.path.join(
 
 
 class AttributeSplitDialog(QtGui.QDialog, FORM_CLASS):
-    def __init__(self, parent=None):
+    def __init__(self, iface, parent=None):
         """Constructor."""
         super(AttributeSplitDialog, self).__init__(parent)
-        # Set up the user interface from Designer.
-        # After setupUI you can access any designer object by doing
-        # self.<objectname>, and you can use autoconnect slots - see
-        # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
-        # #widgets-and-dialogs-with-auto-connect
+        self.iface = iface
         self.setupUi(self)
+        # set event handler if layer selected
+        self.LayerCombo.currentIndexChanged.connect(self.fillColumnNames)
+        # set event handler for directory browser
+        self.BrowseButton.clicked.connect(self.browse)
 
     def showEvent(self, event):
+        """ initialize dialog
+
+	    :param event: NOT USED
+        """
         self.LayerCombo.clear()  # remove previous entries
-        self.BaseEdit.clear()  # clear textbox
+        self.ColumnCombo.clear()
+        self.BaseEdit.clear()    # clear textbox
+        # fill layer name combo
         names = util.getLayerNames([QGis.Polygon, QGis.Line, QGis.Point])
         self.LayerCombo.addItems(names)
+        # set active layer as default
+        if iface.activeLayer():
+            i = self.LayerCombo.findText(iface.activeLayer().name())
+            if i > -1:
+                self.LayerCombo.setCurrentIndex(i)
+
+    def fillColumnNames(self):
+        """ Fill column name combo from current layer
+        """
+        self.ColumnCombo.clear()
+        lname = self.LayerCombo.currentText()
+        if len(lname):
+            vlayer = util.getMapLayerByName(lname)
+            self.ColumnCombo.addItems(util.getFieldNames(vlayer))
+
+    def browse(self):
+        """ select target directory
+	"""
+        self.DirectoryEdit.clear()
+        dir = QtGui.QFileDialog.getExistingDirectory(self,
+            "Select a folder", os.path.expanduser("~"),
+            QtGui.QFileDialog.ShowDirsOnly)
+	self.DirectoryEdit.setText(dir)

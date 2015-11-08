@@ -30,6 +30,10 @@ import os.path
 import util  # get my utils
 from qgis.core import QgsVectorFileWriter, QgsExpression, QgsFeatureRequest
 
+# for debugging only
+#import pdb
+#from PyQt4.QtCore import pyqtRemoveInputHook
+
 class AttributeSplit:
     """QGIS Plugin Implementation."""
 
@@ -60,12 +64,11 @@ class AttributeSplit:
                 QCoreApplication.installTranslator(self.translator)
 
         # Create the dialog (after translation) and keep reference
-        self.dlg = AttributeSplitDialog()
+        self.dlg = AttributeSplitDialog(iface)
 
         # Declare instance attributes
         self.actions = []
         self.menu = self.tr(u'&Attribute Split')
-        # TODO: We are going to let the user set this up in a future iteration
         self.toolbar = self.iface.addToolBar(u'AttributeSplit')
         self.toolbar.setObjectName(u'AttributeSplit')
 
@@ -85,17 +88,9 @@ class AttributeSplit:
         return QCoreApplication.translate('AttributeSplit', message)
 
 
-    def add_action(
-        self,
-        icon_path,
-        text,
-        callback,
-        enabled_flag=True,
-        add_to_menu=True,
-        add_to_toolbar=True,
-        status_tip=None,
-        whats_this=None,
-        parent=None):
+    def add_action(self, icon_path, text, callback, enabled_flag=True,
+        add_to_menu=True, add_to_toolbar=True, status_tip=None,
+        whats_this=None, parent=None):
         """Add a toolbar icon to the toolbar.
 
         :param icon_path: Path to the icon for this action. Can be a resource
@@ -181,26 +176,33 @@ class AttributeSplit:
 
 
     def run(self):
-        """Run method that performs all the real work"""
+        """ Do the job
+        """
         # show the dialog
         self.dlg.show()
         # Run the dialog event loop
         result = self.dlg.exec_()
         # See if OK was pressed
-        if result and len(self.dlg.LayerCombo.currentText()) and len(self.dlg.BaseEdit.text()):
+        if result and len(self.dlg.LayerCombo.currentText()) and \
+            len(self.dlg.ColumnCombo.currentText()):
             vlayer = util.getMapLayerByName(self.dlg.LayerCombo.currentText())
             vprovider = vlayer.dataProvider()
-            field = self.dlg.BaseEdit.text()
+            field = self.dlg.ColumnCombo.currentText()
             fields = vprovider.fields()
             id = fields.indexFromName(field)
+            # unique values of selected field
             uniquevalues = vprovider.uniqueValues(id)
+            base = os.path.join(self.dlg.DirectoryEdit.text(), self.dlg.BaseEdit.text())
             for uniquevalue in uniquevalues:
-                writer = QgsVectorFileWriter(uniquevalue, vprovider.encoding(), fields, vprovider.geometryType(), vprovider.crs())
-                exptext = self.dlg.BaseEdit.text() + " = '" + uniquevalue + "'"
+                # create new shape file
+                writer = QgsVectorFileWriter(base + uniquevalue, vprovider.encoding(), fields, vprovider.geometryType(), vprovider.crs())
+                # set up filter expression
+                exptext = field + " = '" + uniquevalue + "'"
                 exp = QgsExpression(exptext)
                 request = QgsFeatureRequest(exp)
+                #pyqtRemoveInputHook()
+                #pdb.set_trace()
                 for feature in vlayer.getFeatures(request):
                     writer.addFeature(feature)
-                #writer.addFeatures(vlayer.getFeatures(request))
-                
+                # flush and close 
                 del writer

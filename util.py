@@ -66,3 +66,21 @@ def addShape(shapefile_path):
         return True
     else:
         return False
+
+def getFieldList(vlayer):
+    """ Create a list of fields.
+
+        :param vlayer: vector layer
+        :returns: list of fields
+    """
+    return vlayer.pendingFields()
+
+def getFieldNames(vlayer, types = ["String"]):
+    """ Create a list from column names of a vector layer.
+
+        :param vlayer: vector layer
+        :returns: sorted list of field names
+    """
+    fields = getFieldList(vlayer)
+    fieldlist = [field.name() for field in fields if field.typeName() in types]
+    return sorted(fieldlist)

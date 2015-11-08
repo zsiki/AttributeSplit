@@ -1,0 +1,39 @@
+# This file contains metadata for your plugin. Since 
+# version 2.0 of QGIS this is the proper way to supply 
+# information about a plugin. The old method of 
+# embedding metadata in __init__.py will 
+# is no longer supported since version 2.0.
+
+# This file should be included when you package your plugin.# Mandatory items:
+
+[general]
+name=Attribute Split
+qgisMinimumVersion=2.0
+description=Split a layer by attribute values
+version=0.1
+author=Zoltan Siki
+email=siki@agt.bme.hu
+
+about=This plugin splits a loaded layer by an attribute value and saves into separate files.
+
+tracker=https://github.com/zsiki/attribute_split
+repository=https://github.com/zsiki/attribute_split
+# End of mandatory metadata
+
+# Recommended items:
+
+# Uncomment the following line and add your changelog:
+# changelog=
+
+# Tags are comma separated with spaces allowed
+tags=vector
+
+homepage=https://github.com/zsiki/attribute_split
+category=Plugins
+icon=icon.png
+# experimental flag
+experimental=False
+
+# deprecated flag (applies to the whole plugin, not just a single version)
+deprecated=False
+

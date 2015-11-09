@@ -67,7 +67,7 @@ class AttributeSplitDialog(QtGui.QDialog, FORM_CLASS):
         lname = self.LayerCombo.currentText()
         if len(lname):
             vlayer = util.getMapLayerByName(lname)
-            self.ColumnCombo.addItems(util.getFieldNames(vlayer, ["String"]))
+            self.ColumnCombo.addItems(util.getFieldNames(vlayer, ["String", "Integer"]))
 
     def browse(self):
         """ select target directory

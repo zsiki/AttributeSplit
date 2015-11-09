@@ -190,10 +190,10 @@ class AttributeSplit:
             uniquevalues = vprovider.uniqueValues(id)
             base = os.path.join(self.dlg.DirectoryEdit.text(), self.dlg.BaseEdit.text())
             for uniquevalue in uniquevalues:
-                # create new shape file
-                writer = QgsVectorFileWriter(base + uniquevalue, vprovider.encoding(), fields, vprovider.geometryType(), vprovider.crs())
+                # create new shape file for each unique value
+                writer = QgsVectorFileWriter(base + str(uniquevalue), vprovider.encoding(), fields, vprovider.geometryType(), vprovider.crs())
                 # set up filter expression
-                exptext = field + " = '" + uniquevalue + "'"
+                exptext = field + " = '" + str(uniquevalue) + "'"
                 exp = QgsExpression(exptext)
                 request = QgsFeatureRequest(exp)
                 #pyqtRemoveInputHook()

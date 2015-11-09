@@ -75,12 +75,13 @@ def getFieldList(vlayer):
     """
     return vlayer.pendingFields()
 
-def getFieldNames(vlayer, types = ["String"]):
+def getFieldNames(vlayer, types = "All"):
     """ Create a list from column names of a vector layer.
 
         :param vlayer: vector layer
+        :param types: list of allowed types e.g. ["String", "Integer", "Real", "Date"] or "All"
         :returns: sorted list of field names
     """
     fields = getFieldList(vlayer)
-    fieldlist = [field.name() for field in fields if field.typeName() in types]
+    fieldlist = [field.name() for field in fields if field.typeName() in types or types == "All"]
     return sorted(fieldlist)

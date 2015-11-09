@@ -30,10 +30,6 @@ import os.path
 import util  # get my utils
 from qgis.core import QgsVectorFileWriter, QgsExpression, QgsFeatureRequest
 
-# for debugging only
-#import pdb
-#from PyQt4.QtCore import pyqtRemoveInputHook
-
 class AttributeSplit:
     """QGIS Plugin Implementation."""
 

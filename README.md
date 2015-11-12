@@ -22,16 +22,16 @@ at the lower right corner. Unzip the file to the personal plugin folder of your 
 machine:
 
 - ~/.qgis2/python/plugins (Linux)
-- \users\**user_name**\.qgis2\python\plugins (Windows 7+)
-- \Document ans Settings\**user_name**\.qgis2\python\plugins (Windows XP)
+- \users\*user_name*\.qgis2\python\plugins (Windows 7+)
+- \Document ans Settings\*user_name*\.qgis2\python\plugins (Windows XP)
 
-Rename the **AttributeSplit-master** folder to **AttributeSplit**
+Rename the *AttributeSplit-master* folder to *AttributeSplit*
 
-Start/restart QGIS and turn on the plugin in the **Manage and install plugins** dialog.
+Start/restart QGIS and turn on the plugin in the *Manage and install plugins* dialog.
 
 ### Install from git
 
 Clone the repository to your local QGIS  pesonal plugin folder.
 
 - change your actual folder to your personal plugin folder (e.g. ~/.qgis2/python/plugins on Linux)
-- **git clone **
+- *git clone https://github.com/zsiki/AttributeSplit.git*

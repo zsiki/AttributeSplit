@@ -21,7 +21,7 @@
  ***************************************************************************/
 """
 from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
-from PyQt4.QtGui import QAction, QIcon
+from PyQt4.QtGui import QAction, QIcon, QMessageBox, QApplication
 # Initialize Qt resources from file resources.py
 import resources
 # Import the code for the dialog
@@ -188,6 +188,9 @@ class AttributeSplit:
             id = fields.indexFromName(field)
             # unique values of selected field
             uniquevalues = vprovider.uniqueValues(id)
+            if len(uniquevalues) > 25:
+                if QMessageBox.warning(None, QApplication.translate('@default', "Warning"), QApplication.translate('@default', "More than 25 unique values!"), QMessageBox.Ok | QMessageBox.Cancel, QMessageBox.Cancel) == QMessageBox.Cancel:
+                    return
             base = os.path.join(self.dlg.DirectoryEdit.text(), self.dlg.BaseEdit.text())
             for uniquevalue in uniquevalues:
                 # create new shape file for each unique value

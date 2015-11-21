@@ -24,7 +24,7 @@ at the lower right corner. Unzip the file to the personal plugin folder of your 
 machine:
 
 - ~/.qgis2/python/plugins (Linux)
-- \users\*user_name*\.qgis2\python\plugins (Windows 7+)
+- \users\\*user_name*\.qgis2\python\plugins (Windows 7+)
 - \Document ans Settings\*user_name*\.qgis2\python\plugins (Windows XP)
 
 Rename the *AttributeSplit-master* folder to *AttributeSplit*

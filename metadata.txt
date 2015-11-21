@@ -14,7 +14,7 @@ version=0.1
 author=Zoltan Siki
 email=siki@agt.bme.hu
 
-about=This plugin splits a loaded layer by an attribute value and saves into separate files.
+about=This plugin splits a loaded layer by an attribute value and saves into separate shape files.
 
 tracker=https://github.com/zsiki/attribute_split
 repository=https://github.com/zsiki/attribute_split

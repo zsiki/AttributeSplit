@@ -10,6 +10,8 @@ value. For example if the target directory is _/home/user/split_, the prefix is
 _abc-_ and the actual attribute value is _budapest_ then the output shape file
 will be _/home/user/split/abc-budapest.shp_.
 
+The plugin was tested with Shape file, SpatiaLite and PostGIS.
+
 ## Install the plugin
 
 Actually the plugin has a beta version and is not available in the plugins.qgis.org
@@ -22,8 +24,8 @@ at the lower right corner. Unzip the file to the personal plugin folder of your 
 machine:
 
 - ~/.qgis2/python/plugins (Linux)
-- \users\*user_name*\.qgis2\python\plugins (Windows 7+)
-- \Document ans Settings\*user_name*\.qgis2\python\plugins (Windows XP)
+- \users\\*user_name*\\.qgis2\python\plugins (Windows 7+)
+- \Document ans Settings\\*user_name*\\.qgis2\python\plugins (Windows XP)
 
 Rename the *AttributeSplit-master* folder to *AttributeSplit*
 

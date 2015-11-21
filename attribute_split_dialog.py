@@ -67,7 +67,10 @@ class AttributeSplitDialog(QtGui.QDialog, FORM_CLASS):
         lname = self.LayerCombo.currentText()
         if len(lname):
             vlayer = util.getMapLayerByName(lname)
-            self.ColumnCombo.addItems(util.getFieldNames(vlayer, ["String", "Integer"]))
+            # String, Integer for shapes
+            # INTEGER, TEXT for spatialite
+            # int4, int8, text for postgis
+            self.ColumnCombo.addItems(util.getFieldNames(vlayer, ["String", "Integer", "INTEGER", "TEXT", "int4", "int8", "text"]))
 
     def browse(self):
         """ select target directory

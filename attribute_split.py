@@ -189,7 +189,7 @@ class AttributeSplit:
             # unique values of selected field
             uniquevalues = vprovider.uniqueValues(id)
             if len(uniquevalues) > 25:
-                if QMessageBox.warning(None, QApplication.translate('@default', "Warning"), QApplication.translate('@default', "More than 25 unique values!"), QMessageBox.Ok | QMessageBox.Cancel, QMessageBox.Cancel) == QMessageBox.Cancel:
+                if QMessageBox.warning(None, QApplication.translate('@default', "Warning"), str(len(uniquevalues)) + " " +QApplication.translate('@default', " unique values! Continue?"), QMessageBox.Ok | QMessageBox.Cancel, QMessageBox.Cancel) == QMessageBox.Cancel:
                     return
             base = os.path.join(self.dlg.DirectoryEdit.text(), self.dlg.BaseEdit.text())
             for uniquevalue in uniquevalues:

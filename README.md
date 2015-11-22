@@ -12,6 +12,9 @@ will be _/home/user/split/abc-budapest.shp_.
 
 The plugin was tested with Shape file, SpatiaLite and PostGIS.
 
+`Similiar functionality exists in the Vector menu of QGIS (which I missed infortunatelly), 
+so this plugin will not be published on the official QGIS plugin web page.`
+
 ## Install the plugin
 
 Actually the plugin has a beta version and is not available in the plugins.qgis.org

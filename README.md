@@ -12,8 +12,8 @@ will be _/home/user/split/abc-budapest.shp_.
 
 The plugin was tested with Shape file, SpatiaLite and PostGIS.
 
-`Similiar functionality exists in the Vector menu of QGIS (Vector split, which I missed unfortunatelly), 
-so this plugin will not be published on the official QGIS plugin web page.`
+> Similiar functionality exists in the Vector menu of QGIS (Vector split, which I missed unfortunatelly), 
+> so this plugin will not be published on the official QGIS plugin web page.
 
 ## Install the plugin
 
